@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block content%}
+    <p>Название книги: {{ book.name }}</p>
+    <p>Автор книги: <a href="{% url 'author-detail' book.author.get.pk %}">{{ book.author.all|join:", " }}</a></p>
+    <p>Описание: {{ book.description }}</p>
+    <p>Дата выхода книги: {{ book.pub_date }}</p>
+{% endblock%}

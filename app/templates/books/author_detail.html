@@ -1,0 +1,6 @@
+{% extends 'base.html' %}
+
+{% block content%}
+    <p>Имя автора: {{ author.name }}</p>
+    <p>Книги автора: {{ author.books.all|join:", " }}</p>
+{% endblock%}
