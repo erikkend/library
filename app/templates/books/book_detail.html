@@ -1,8 +1,16 @@
 {% extends 'base.html' %}
 
 {% block content%}
-    <p>Название книги: {{ book.name }}</p>
-    <p>Автор книги: <a href="{% url 'author-detail' book.author.get.pk %}">{{ book.author.all|join:", " }}</a></p>
-    <p>Описание: {{ book.description }}</p>
-    <p>Дата выхода книги: {{ book.pub_date }}</p>
+
+
+<div>
+<ul class="list-group">
+  <li class="list-group-item disabled" aria-disabled="true">Информация о книге</li>
+  <li class="list-group-item">Название книги: {{ book.name }}</li>
+  <li class="list-group-item">Автор книги: <a href="{% url 'author-detail' book.author.get.pk %}">{{ book.author.all|join:", "}}</a></li>
+  <li class="list-group-item">Описание: {{ book.description }}</li>
+  <li class="list-group-item">Дата выхода книги: {{ book.pub_date }}</li>
+</ul>
+</div>
+
 {% endblock%}

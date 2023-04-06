@@ -2,28 +2,25 @@
 
 
 {%block content%}
+<div class="d-flex flex-column mb-3 container w-50 mt-5">
 
 <form method="post">
-    {{ form.as_p }}
+    {{ form }}
     {% csrf_token %}
     <button type="submit">Отправить</button>
 </form>
 
 {% if books %}
     <br>
-    {% for book in books %}
-        <ul>
-            <li>
+        <ul class="list-group">
+            {% for book in books %}
+            <li class="list-group-item">
                 <a href="{% url 'book-detail' book.pk %}"><p>{{ book.name }}</p></a>
                 <p>Автор: {{ book.author.all|join:", " }}</p>
-
             </li>
-            <hr>
+            {% endfor %}
         </ul>
-    {% endfor %}
-
-{% else %}
-    Нет совпадении по слову
 
 {% endif %}
+</div>
 {% endblock %}
