@@ -1,11 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Login</h1>
+<div class="wrapper d-flex justify-content-center flex-column">
 
-<form method="post">
-    {{ form.as_p }}
-    {% csrf_token %}
-    <button type="submit" class="btn btn-success"> Отправить </button>
-</form>
+    <div class="d-flex flex-column mb-3 container w-50 mt-5">
+    <h3>Вход</h3>
+    <form method="post">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <button type="submit" class="btn btn-success"> Отправить </button>
+    </form>
+    <a class="mt-2" href="{% url 'register' %}">Возможно хотите создать аккаунт?</a>
+    </div>
+</div>
+
 {% endblock %}
