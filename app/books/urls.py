@@ -1,8 +1,9 @@
 from django.urls import path
-from books.views import SearchBook, BookDetailView, AuthorDetailView
+from books.views import SearchBook, BookDetailView, AuthorDetailView, AddBookRating
 
 urlpatterns = [
     path('search_book/', SearchBook.as_view(), name='search-book'),
     path('book_info/<int:pk>', BookDetailView.as_view(), name='book-detail'),
     path('author_info/<int:pk>', AuthorDetailView.as_view(), name='author-detail'),
+    path('add-rating/', AddBookRating.as_view(), name='add-rating')
 ]
