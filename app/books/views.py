@@ -5,6 +5,7 @@ from books.models import Book, Author, Vote
 from books.forms import VoteForm
 from django.views.generic.detail import DetailView
 from books.filters import BookFilter
+from cart.forms import CartAddProductForm
 
 
 class BookDetailView(DetailView):
@@ -15,6 +16,7 @@ class BookDetailView(DetailView):
         context['form'] = VoteForm
         avg_book_rating = self.object.book_ratings.aggregate(Avg("rating"))['rating__avg']
         context['avg_rating'] = avg_book_rating
+        context['cart_product_form'] = CartAddProductForm
         return context
 
 

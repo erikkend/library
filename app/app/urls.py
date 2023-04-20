@@ -23,5 +23,6 @@ urlpatterns = [
     path('users/', include('users.urls')),
     path('books/', include('books.urls')),
     path('captcha/', include('captcha.urls')),
-    path('api/', include('rest_api.urls'))
+    path('api/', include('rest_api.urls')),
+    path('cart/', include('cart.urls')),
 ]

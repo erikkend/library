@@ -10,6 +10,7 @@
   <li class="list-group-item">Автор книги: <a href="{% url 'author-detail' book.author.get.pk %}">{{ book.author.all|join:", "}}</a></li>
   <li class="list-group-item">Описание: {{ book.description }}</li>
   <li class="list-group-item">Дата выхода книги: {{ book.pub_date }}</li>
+  <li class="list-group-item">Цена: {{ book.price }}</li>
   <li class="list-group-item">Средний рейтинг: {{ avg_rating }}</li>
   <li class="list-group-item">
     <form method="post" action="{% url 'add-rating' %}">
@@ -19,7 +20,14 @@
     <button type="submit"> Оценить </button>
     </form>
   </li>
+
 </ul>
 </div>
+
+    <form action="{% url 'cart:increase-item' book.id %}" method="post">
+      {{ cart_product_form }}
+      {% csrf_token %}
+      <input type="submit" value="Добавить в корзину">
+    </form>
 
 {% endblock%}
