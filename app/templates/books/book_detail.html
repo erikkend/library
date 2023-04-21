@@ -5,7 +5,10 @@
 
 <div>
 <ul class="list-group">
-  <li class="list-group-item disabled" aria-disabled="true">Информация о книге</li>
+  <div>
+    <li class="list-group-item disabled" aria-disabled="true">Информация о книге</li>
+    <img src="{{ book.image.url }}" class="img-fluid rounded-3" alt="{{ book.name }}">
+  </div>
   <li class="list-group-item">Название книги: {{ book.name }}</li>
   <li class="list-group-item">Автор книги: <a href="{% url 'author-detail' book.author.get.pk %}">{{ book.author.all|join:", "}}</a></li>
   <li class="list-group-item">Описание: {{ book.description }}</li>

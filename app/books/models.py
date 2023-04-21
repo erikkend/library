@@ -11,6 +11,7 @@ class Book(models.Model):
     price = models.FloatField(null=True, blank=True, verbose_name='Цена')
     pub_date = models.DateTimeField('Дата публикации')
     genre = models.ManyToManyField('Genre', related_name='genre_books', blank=False, verbose_name='Жанры')
+    image = models.ImageField(upload_to='book-images/', blank=True)
 
     def __str__(self):
         return f"{self.name}"

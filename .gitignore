@@ -2,10 +2,12 @@ __pycache__/
 *.py[cod]
 *$py.class
 /__pycache__/
-
+/.idea/
+.idea/
 # C extensions
 *.so
-
+/media/
+media/
 # Distribution / packaging
 .Python
 build/
