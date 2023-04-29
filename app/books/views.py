@@ -10,7 +10,7 @@ from books.filters import BookFilter
 
 
 class BookListView(ListView):
-    template_name = 'books/searching.html'
+    template_name = 'books/book_list.html'
     model = Book
 
     def get_context_data(self, **kwargs):
@@ -24,10 +24,10 @@ class BookListView(ListView):
 
         if book_filter.is_valid():
             book_filter = BookFilter(request.GET, queryset=books)
-            books = book_filter.qs
+            filtered_books = book_filter.qs
             context = {
                 'form': book_filter,
-                'object_list': books
+                'object_list': filtered_books
             }
             return render(request, self.template_name, context)
         context = {
