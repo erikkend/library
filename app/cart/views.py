@@ -10,14 +10,7 @@ def cart_increase(request, product_id):
     product = get_object_or_404(Book, id=product_id)
     cart.increase_product(product=product, quantity=+1)
 
-    do_redirect = True
-    if "/books/" in str(request.META['HTTP_REFERER']):
-        do_redirect = False
-
-    if do_redirect:
-        return redirect('cart:cart-detail')
-    else:
-        return redirect(reverse("book-detail", kwargs={"pk": product_id}))
+    return redirect(request.META['HTTP_REFERER'])
 
 
 @require_POST

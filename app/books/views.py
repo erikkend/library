@@ -1,11 +1,39 @@
-from django.db.models import Avg
-from django.shortcuts import render, redirect
 from django.views import View
-from books.models import Book, Author, Vote
+from django.db.models import Avg
 from books.forms import VoteForm
+from cart.forms import CartAddProductForm
+from books.models import Book, Author, Vote
+from django.shortcuts import render, redirect
+from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from books.filters import BookFilter
-from cart.forms import CartAddProductForm
+
+
+class BookListView(ListView):
+    template_name = 'books/searching.html'
+    model = Book
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = BookFilter
+        return context
+
+    def get(self, request, *args, **kwargs):
+        book_filter = BookFilter(request.GET)
+        books = Book.objects.all()
+
+        if book_filter.is_valid():
+            book_filter = BookFilter(request.GET, queryset=books)
+            books = book_filter.qs
+            context = {
+                'form': book_filter,
+                'object_list': books
+            }
+            return render(request, self.template_name, context)
+        context = {
+            'form': book_filter
+        }
+        return render(request, self.template_name, context)
 
 
 class BookDetailView(DetailView):
